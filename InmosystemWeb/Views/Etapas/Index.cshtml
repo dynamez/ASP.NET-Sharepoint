@@ -1,0 +1,81 @@
+﻿@model IEnumerable<InmosystemWeb.Models.Etapa>
+
+@{
+    ViewBag.Title = "Etapas";
+}
+
+<h2>Etapas</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva Etapa", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Inicio Construccion
+        </th>
+        <th>
+            Termino Construccion
+        </th>
+        <th>
+            Incio Ventas
+        </th>
+        <th>
+            Termino Ventas
+        </th>
+        <th>
+            Codigo Contable
+        </th>
+        <th>
+            Numero de Unidades
+        </th>
+        <th>
+            Proyecto
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_inicioCons)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_terminoCons)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_inicioVenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_terminoVenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_codigoContable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Etapa_unidades)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proyecto.Proy_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Etapa_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Etapa_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Etapa_id })
+        </td>
+    </tr>
+}
+
+</table>

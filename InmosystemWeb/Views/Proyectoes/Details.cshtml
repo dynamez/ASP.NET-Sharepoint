@@ -1,0 +1,90 @@
+﻿@model InmosystemWeb.Models.Proyecto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Proyecto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_zona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_zona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_ciudad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_ciudad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_gerente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_gerente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proy_codigoContable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proy_codigoContable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmobiliaria.Inmo_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmobiliaria.Inmo_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Proy_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

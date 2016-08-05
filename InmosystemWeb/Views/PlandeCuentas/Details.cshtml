@@ -1,0 +1,50 @@
+﻿@model InmosystemWeb.Models.PlandeCuentas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PlandeCuentas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan_Grupo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan_Grupo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan_GrupoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan_GrupoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan_NombreId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan_NombreId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Plan_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

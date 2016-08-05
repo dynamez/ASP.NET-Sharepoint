@@ -1,0 +1,69 @@
+﻿@model IEnumerable<InmosystemWeb.Models.Inmobiliaria>
+
+@{
+    ViewBag.Title = "Inmobiliaria";
+}
+
+<h2>Inmobiliarias</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Inmobiliaria
+        </th>
+        <th>
+            RUT
+        </th>
+        <th>
+            Representante Legal
+        </th>
+        <th>
+           Zona
+        </th>
+        <th>
+            Region
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
+            Calle
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Rut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_RL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Zona)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Ciudad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Calle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Inmo_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Inmo_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Inmo_id })
+        </td>
+    </tr>
+}
+
+</table>

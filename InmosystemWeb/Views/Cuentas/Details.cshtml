@@ -1,0 +1,74 @@
+﻿@model InmosystemWeb.Models.Cuenta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cuenta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuenta_FechaProceso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuenta_FechaProceso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuenta_Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuenta_Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuenta_CodigoContable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuenta_CodigoContable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuenta_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuenta_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuenta_FechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuenta_FechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Etapa.Etapa_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Etapa.Etapa_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlandeCuentas.Plan_Grupo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlandeCuentas.Plan_Grupo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cuenta_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

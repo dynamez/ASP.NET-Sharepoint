@@ -1,0 +1,69 @@
+﻿@model IEnumerable<InmosystemWeb.Models.Inmobiliaria>
+
+@{
+    ViewBag.Title = "AddInmo";
+}
+
+<h2>AddInmo</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Inmo_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inmo_Rut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inmo_RL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inmo_Zona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inmo_Region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inmo_Ciudad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inmo_Calle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Rut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_RL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Zona)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Ciudad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inmo_Calle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Inmo_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Inmo_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Inmo_id })
+        </td>
+    </tr>
+}
+
+</table>

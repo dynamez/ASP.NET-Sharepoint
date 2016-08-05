@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InmosysytemDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="Cuenta_id" />
+          </Key>
+          <Property Name="Cuenta_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cuenta_FechaProceso" Type="date" Nullable="false" />
+          <Property Name="Cuenta_Valor" Type="int" Nullable="false" />
+          <Property Name="Cuenta_CodigoContable" Type="int" Nullable="false" />
+          <Property Name="Cuenta_Estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cuenta_FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="Etapa_id" Type="int" Nullable="false" />
+          <Property Name="Plan_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Etapa">
+          <Key>
+            <PropertyRef Name="Etapa_id" />
+          </Key>
+          <Property Name="Etapa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Etapa_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Etapa_tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Etapa_inicioCons" Type="date" Nullable="false" />
+          <Property Name="Etapa_terminoCons" Type="date" Nullable="false" />
+          <Property Name="Etapa_inicioVenta" Type="date" Nullable="false" />
+          <Property Name="Etapa_terminoVenta" Type="date" Nullable="false" />
+          <Property Name="Etapa_codigoContable" Type="int" Nullable="false" />
+          <Property Name="Etapa_unidades" Type="int" Nullable="false" />
+          <Property Name="Proy_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inmobiliaria">
+          <Key>
+            <PropertyRef Name="Inmo_id" />
+          </Key>
+          <Property Name="Inmo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inmo_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Inmo_Rut" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Inmo_RL" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Inmo_Zona" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Inmo_Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Inmo_Ciudad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Inmo_Calle" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlandeCuentas">
+          <Key>
+            <PropertyRef Name="Plan_Id" />
+          </Key>
+          <Property Name="Plan_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plan_Grupo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Plan_GrupoId" Type="int" Nullable="false" />
+          <Property Name="Plan_Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Plan_NombreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="Proy_id" />
+          </Key>
+          <Property Name="Proy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Proy_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Proy_zona" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Proy_region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Proy_ciudad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Proy_calle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Proy_gerente" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Proy_descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Proy_codigoContable" Type="int" Nullable="false" />
+          <Property Name="Inmo_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cuenta_ToTable">
+          <End Role="Etapa" Type="Self.Etapa" Multiplicity="1" />
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etapa">
+              <PropertyRef Name="Etapa_id" />
+            </Principal>
+            <Dependent Role="Cuenta">
+              <PropertyRef Name="Etapa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_ToTable_1">
+          <End Role="PlandeCuentas" Type="Self.PlandeCuentas" Multiplicity="1" />
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlandeCuentas">
+              <PropertyRef Name="Plan_Id" />
+            </Principal>
+            <Dependent Role="Cuenta">
+              <PropertyRef Name="Plan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etapa_ToTable">
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+          <End Role="Etapa" Type="Self.Etapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="Proy_id" />
+            </Principal>
+            <Dependent Role="Etapa">
+              <PropertyRef Name="Proy_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_ToTable">
+          <End Role="Inmobiliaria" Type="Self.Inmobiliaria" Multiplicity="1" />
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inmobiliaria">
+              <PropertyRef Name="Inmo_id" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="Inmo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="cuentaspivot" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="InmosysytemDBModelStoreContainer">
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Etapa" EntityType="Self.Etapa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inmobiliaria" EntityType="Self.Inmobiliaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlandeCuentas" EntityType="Self.PlandeCuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyecto" EntityType="Self.Proyecto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cuenta_ToTable" Association="Self.FK_Cuenta_ToTable">
+            <End Role="Etapa" EntitySet="Etapa" />
+            <End Role="Cuenta" EntitySet="Cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_ToTable_1" Association="Self.FK_Cuenta_ToTable_1">
+            <End Role="PlandeCuentas" EntitySet="PlandeCuentas" />
+            <End Role="Cuenta" EntitySet="Cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etapa_ToTable" Association="Self.FK_Etapa_ToTable">
+            <End Role="Proyecto" EntitySet="Proyecto" />
+            <End Role="Etapa" EntitySet="Etapa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_ToTable" Association="Self.FK_Proyecto_ToTable">
+            <End Role="Inmobiliaria" EntitySet="Inmobiliaria" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InmosysytemDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="Cuenta_id" />
+          </Key>
+          <Property Name="Cuenta_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cuenta_FechaProceso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cuenta_Valor" Type="Int32" Nullable="false" />
+          <Property Name="Cuenta_CodigoContable" Type="Int32" Nullable="false" />
+          <Property Name="Cuenta_Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cuenta_FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Etapa_id" Type="Int32" Nullable="false" />
+          <Property Name="Plan_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Etapa" Relationship="Self.FK_Cuenta_ToTable" FromRole="Cuenta" ToRole="Etapa" />
+          <NavigationProperty Name="PlandeCuentas" Relationship="Self.FK_Cuenta_ToTable_1" FromRole="Cuenta" ToRole="PlandeCuentas" />
+        </EntityType>
+        <EntityType Name="Etapa">
+          <Key>
+            <PropertyRef Name="Etapa_id" />
+          </Key>
+          <Property Name="Etapa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Etapa_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Etapa_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Etapa_inicioCons" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Etapa_terminoCons" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Etapa_inicioVenta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Etapa_terminoVenta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Etapa_codigoContable" Type="Int32" Nullable="false" />
+          <Property Name="Etapa_unidades" Type="Int32" Nullable="false" />
+          <Property Name="Proy_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Cuenta_ToTable" FromRole="Etapa" ToRole="Cuenta" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Etapa_ToTable" FromRole="Etapa" ToRole="Proyecto" />
+        </EntityType>
+        <EntityType Name="Inmobiliaria">
+          <Key>
+            <PropertyRef Name="Inmo_id" />
+          </Key>
+          <Property Name="Inmo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inmo_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inmo_Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inmo_RL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inmo_Zona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inmo_Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inmo_Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inmo_Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Proyecto" Relationship="Self.FK_Proyecto_ToTable" FromRole="Inmobiliaria" ToRole="Proyecto" />
+        </EntityType>
+        <EntityType Name="PlandeCuentas">
+          <Key>
+            <PropertyRef Name="Plan_Id" />
+          </Key>
+          <Property Name="Plan_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plan_Grupo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plan_GrupoId" Type="Int32" Nullable="false" />
+          <Property Name="Plan_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plan_NombreId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.FK_Cuenta_ToTable_1" FromRole="PlandeCuentas" ToRole="Cuenta" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="Proy_id" />
+          </Key>
+          <Property Name="Proy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Proy_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Proy_zona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Proy_region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Proy_ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Proy_calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Proy_gerente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Proy_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Proy_codigoContable" Type="Int32" Nullable="false" />
+          <Property Name="Inmo_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Etapa" Relationship="Self.FK_Etapa_ToTable" FromRole="Proyecto" ToRole="Etapa" />
+          <NavigationProperty Name="Inmobiliaria" Relationship="Self.FK_Proyecto_ToTable" FromRole="Proyecto" ToRole="Inmobiliaria" />
+        </EntityType>
+        <Association Name="FK_Cuenta_ToTable">
+          <End Role="Etapa" Type="Self.Etapa" Multiplicity="1" />
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etapa">
+              <PropertyRef Name="Etapa_id" />
+            </Principal>
+            <Dependent Role="Cuenta">
+              <PropertyRef Name="Etapa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuenta_ToTable_1">
+          <End Role="PlandeCuentas" Type="Self.PlandeCuentas" Multiplicity="1" />
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlandeCuentas">
+              <PropertyRef Name="Plan_Id" />
+            </Principal>
+            <Dependent Role="Cuenta">
+              <PropertyRef Name="Plan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etapa_ToTable">
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+          <End Role="Etapa" Type="Self.Etapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="Proy_id" />
+            </Principal>
+            <Dependent Role="Etapa">
+              <PropertyRef Name="Proy_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_ToTable">
+          <End Role="Inmobiliaria" Type="Self.Inmobiliaria" Multiplicity="1" />
+          <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inmobiliaria">
+              <PropertyRef Name="Inmo_id" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="Inmo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InmosysytemDBEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
+          <EntitySet Name="Etapa" EntityType="Self.Etapa" />
+          <EntitySet Name="Inmobiliaria" EntityType="Self.Inmobiliaria" />
+          <EntitySet Name="PlandeCuentas" EntityType="Self.PlandeCuentas" />
+          <EntitySet Name="Proyecto" EntityType="Self.Proyecto" />
+          <AssociationSet Name="FK_Cuenta_ToTable" Association="Self.FK_Cuenta_ToTable">
+            <End Role="Etapa" EntitySet="Etapa" />
+            <End Role="Cuenta" EntitySet="Cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuenta_ToTable_1" Association="Self.FK_Cuenta_ToTable_1">
+            <End Role="PlandeCuentas" EntitySet="PlandeCuentas" />
+            <End Role="Cuenta" EntitySet="Cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etapa_ToTable" Association="Self.FK_Etapa_ToTable">
+            <End Role="Proyecto" EntitySet="Proyecto" />
+            <End Role="Etapa" EntitySet="Etapa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_ToTable" Association="Self.FK_Proyecto_ToTable">
+            <End Role="Inmobiliaria" EntitySet="Inmobiliaria" />
+            <End Role="Proyecto" EntitySet="Proyecto" />
+          </AssociationSet>
+          <FunctionImport Name="cuentaspivot" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InmosysytemDBModelStoreContainer" CdmEntityContainer="InmosysytemDBEntities4">
+          <EntitySetMapping Name="Cuenta">
+            <EntityTypeMapping TypeName="InmosysytemDBModel.Cuenta">
+              <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="Cuenta_id" ColumnName="Cuenta_id" />
+                <ScalarProperty Name="Cuenta_FechaProceso" ColumnName="Cuenta_FechaProceso" />
+                <ScalarProperty Name="Cuenta_Valor" ColumnName="Cuenta_Valor" />
+                <ScalarProperty Name="Cuenta_CodigoContable" ColumnName="Cuenta_CodigoContable" />
+                <ScalarProperty Name="Cuenta_Estado" ColumnName="Cuenta_Estado" />
+                <ScalarProperty Name="Cuenta_FechaIngreso" ColumnName="Cuenta_FechaIngreso" />
+                <ScalarProperty Name="Etapa_id" ColumnName="Etapa_id" />
+                <ScalarProperty Name="Plan_Id" ColumnName="Plan_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Etapa">
+            <EntityTypeMapping TypeName="InmosysytemDBModel.Etapa">
+              <MappingFragment StoreEntitySet="Etapa">
+                <ScalarProperty Name="Etapa_id" ColumnName="Etapa_id" />
+                <ScalarProperty Name="Etapa_name" ColumnName="Etapa_name" />
+                <ScalarProperty Name="Etapa_tipo" ColumnName="Etapa_tipo" />
+                <ScalarProperty Name="Etapa_inicioCons" ColumnName="Etapa_inicioCons" />
+                <ScalarProperty Name="Etapa_terminoCons" ColumnName="Etapa_terminoCons" />
+                <ScalarProperty Name="Etapa_inicioVenta" ColumnName="Etapa_inicioVenta" />
+                <ScalarProperty Name="Etapa_terminoVenta" ColumnName="Etapa_terminoVenta" />
+                <ScalarProperty Name="Etapa_codigoContable" ColumnName="Etapa_codigoContable" />
+                <ScalarProperty Name="Etapa_unidades" ColumnName="Etapa_unidades" />
+                <ScalarProperty Name="Proy_id" ColumnName="Proy_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inmobiliaria">
+            <EntityTypeMapping TypeName="InmosysytemDBModel.Inmobiliaria">
+              <MappingFragment StoreEntitySet="Inmobiliaria">
+                <ScalarProperty Name="Inmo_id" ColumnName="Inmo_id" />
+                <ScalarProperty Name="Inmo_Name" ColumnName="Inmo_Name" />
+                <ScalarProperty Name="Inmo_Rut" ColumnName="Inmo_Rut" />
+                <ScalarProperty Name="Inmo_RL" ColumnName="Inmo_RL" />
+                <ScalarProperty Name="Inmo_Zona" ColumnName="Inmo_Zona" />
+                <ScalarProperty Name="Inmo_Region" ColumnName="Inmo_Region" />
+                <ScalarProperty Name="Inmo_Ciudad" ColumnName="Inmo_Ciudad" />
+                <ScalarProperty Name="Inmo_Calle" ColumnName="Inmo_Calle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlandeCuentas">
+            <EntityTypeMapping TypeName="InmosysytemDBModel.PlandeCuentas">
+              <MappingFragment StoreEntitySet="PlandeCuentas">
+                <ScalarProperty Name="Plan_Id" ColumnName="Plan_Id" />
+                <ScalarProperty Name="Plan_Grupo" ColumnName="Plan_Grupo" />
+                <ScalarProperty Name="Plan_GrupoId" ColumnName="Plan_GrupoId" />
+                <ScalarProperty Name="Plan_Nombre" ColumnName="Plan_Nombre" />
+                <ScalarProperty Name="Plan_NombreId" ColumnName="Plan_NombreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyecto">
+            <EntityTypeMapping TypeName="InmosysytemDBModel.Proyecto">
+              <MappingFragment StoreEntitySet="Proyecto">
+                <ScalarProperty Name="Proy_id" ColumnName="Proy_id" />
+                <ScalarProperty Name="Proy_name" ColumnName="Proy_name" />
+                <ScalarProperty Name="Proy_zona" ColumnName="Proy_zona" />
+                <ScalarProperty Name="Proy_region" ColumnName="Proy_region" />
+                <ScalarProperty Name="Proy_ciudad" ColumnName="Proy_ciudad" />
+                <ScalarProperty Name="Proy_calle" ColumnName="Proy_calle" />
+                <ScalarProperty Name="Proy_gerente" ColumnName="Proy_gerente" />
+                <ScalarProperty Name="Proy_descripcion" ColumnName="Proy_descripcion" />
+                <ScalarProperty Name="Proy_codigoContable" ColumnName="Proy_codigoContable" />
+                <ScalarProperty Name="Inmo_id" ColumnName="Inmo_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="cuentaspivot" FunctionName="InmosysytemDBModel.Store.cuentaspivot" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

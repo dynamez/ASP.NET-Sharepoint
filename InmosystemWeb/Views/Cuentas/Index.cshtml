@@ -1,0 +1,130 @@
+﻿@model IEnumerable<InmosystemWeb.Models.Cuenta>
+
+@{
+
+    ViewBag.Title = "Cuentas";
+   
+    
+}
+
+<h2>Cuentas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+    @(Html.Kendo().Grid(Model) //Bind the grid to ViewBag.Products
+           .Name("grid2")
+           .Columns(columns =>
+           {
+                   //Create a column bound to the ProductID property.
+                   columns.Bound(p => p.Cuenta_id);
+                   //Create a column bound to the ProductName property.
+                   columns.Bound(p => p.Cuenta_FechaProceso);
+                   //Create a column bound to the UnitsInStock property.
+                   columns.Bound(p => p.Plan_Id);
+                   columns.Bound(p => p.Cuenta_Valor);
+                   columns.Bound(p => p.PlandeCuentas.Plan_Grupo);
+           })
+           .Pageable() //Enable the paging.
+           .Sortable() //Enable the sorting.
+           
+           
+    )
+
+<h2>Cuentas</h2>
+
+@(Html.Kendo().Grid<InmosystemWeb.Models.Cuenta>()
+              .Name("grid")
+              .Columns(columns =>
+              {
+                  columns.Bound(cuenta => cuenta.Cuenta_id).Width(100);
+                  columns.Bound(cuenta => cuenta.Cuenta_FechaProceso);
+
+                  columns.Bound(cuenta => cuenta.Cuenta_Valor);
+
+                  columns.Bound(cuenta => cuenta.Plan_Id);
+                  // columns.Bound(cuenta => cuenta.PlandeCuentas.Plan_Grupo);
+                  columns.Bound(cuenta => cuenta.PlandeCuentas.Plan_Grupo);
+
+                  columns.Command(commands =>
+                  {
+                      commands.Destroy(); // The "destroy" command removes data items.
+                  }).Title("Commands").Width(200);
+              })
+              .ToolBar(toolbar =>
+              {
+                  toolbar.Create(); // The "create" command adds new data items.
+                  toolbar.Save(); // The "save" command saves the changed data items.
+              })
+              .Editable(editable => editable.Mode(GridEditMode.InCell)) // Use in-cell editing mode.
+              .DataSource(dataSource =>
+                  dataSource.Ajax()
+                    .Batch(true) // Enable batch updates.
+                    .Model(model =>
+                    {
+                        model.Id(cuenta => cuenta.Cuenta_id); // Specify the property which is the unique identifier of the model.
+                        model.Field(cuenta => cuenta.Cuenta_id).Editable(false); // Make the ProductID property not editable.
+                    })
+                    .Events(events => events.Error("error_handler"))
+                    .Create(create => create.Action("Cuentas_Create", "Cuentas")) // Action method invoked when the user saves a new data item.
+                    .Read(read => read.Action("Cuentas_Read", "Cuentas"))  // Action method invoked when the grid needs data.
+                    .Update(update => update.Action("Cuentas_Update", "Cuentas"))  // Action method invoked when the user saves an updated data item.
+                    .Destroy(destroy => destroy.Action("Cuentas_Destroy", "Cuentas")) // Action method invoked when the user removes a data item.
+              )
+              .Pageable() //Enable the paging.
+                .Sortable()
+                
+)
+    
+    <script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+
+<div class="container">
+    <div class="hero-unit">
+
+        <h1>Inmobiliaria<br /> <small>Proyecto - Etapa</small></h1>
+        <hr />
+        <div class="alert alert-error hide">
+            That would cost too much
+        </div>
+        <table id="mainTable" class="table table-striped">
+            <thead><tr><th>Detalle</th><th>Control</th><th>Total</th><th>May-13</th><th>Jun-13</th><th>Jul-13</th><th>Ago-13</th></tr></thead>
+            <tfoot><tr><th><strong>TOTAL</strong></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></tfoot>
+            <tbody>
+                <tr><td>Urbanizacion</td><td>100</td><td>200</td><td>0</td><td>0</td><td>200</td><td>200</td></tr>
+                <tr><td>Construccion</td><td>330</td><td>240</td><td>1</td><td>0</td><td>200</td><td>200</td></tr>
+                <tr><td>Publicidad y Sala Vtas</td><td>430</td><td>540</td><td>3</td><td>0</td><td>200</td><td>200</td></tr>
+                <tr><td>Gerenciacion</td><td>100</td><td>200</td><td>0</td><td>0</td><td>200</td><td>200</td></tr>
+                <tr><td>Honorarios y sueldo Vtas</td><td>330</td><td>240</td><td>1</td><td>0</td><td>200</td><td>200</td></tr>
+                <tr><td>Gastos Adm. y Ventas</td><td>330</td><td>240</td><td>1</td><td>0</td><td>200</td><td>200</td></tr>
+                <tr><td>Otros GIO</td><td>330</td><td>240</td><td>1</td><td>0</td><td>200</td><td>200</td></tr>
+            </tbody>
+
+        </table>
+        <h2><small>just start typing to edit, or move around with arrow keys or mouse clicks!</small></h2>
+    </div>
+
+
+</div>
+<script>
+    $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+
+</script>
+<script>
+$("opener").click(function () {
+    $('#mainTable').append('<tr><td>my data</td><td>more data</td></tr>');
+});</script>

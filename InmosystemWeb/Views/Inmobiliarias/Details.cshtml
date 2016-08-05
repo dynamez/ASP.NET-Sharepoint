@@ -1,0 +1,74 @@
+﻿@model InmosystemWeb.Models.Inmobiliaria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Inmobiliaria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmo_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmo_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmo_Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmo_Rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmo_RL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmo_RL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmo_Zona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmo_Zona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmo_Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmo_Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmo_Ciudad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmo_Ciudad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inmo_Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inmo_Calle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Inmo_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

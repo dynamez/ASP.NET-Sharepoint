@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="7dd9a01d-9294-4524-abff-010345af7f0d" solutionId="7dd9a01d-9294-4524-abff-010345af7f0d" resetWebServer="false" sharePointProductVersion="16.0" name="Inmosystem" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="23634ab9-087e-4b44-a7c3-dfe9063f82d5" />
+  </features>
+</package>

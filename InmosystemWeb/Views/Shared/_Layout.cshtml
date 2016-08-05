@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/kendo/css")
+    @Scripts.Render("~/bundles/modernizr")
+   
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+    
+   
+    <script src="~/Scripts/numeric-input-example.js"></script>
+    <script src="~/Scripts/mindmup-editabletable.js"></script>
+    
+    
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Sistema Inmobiliario", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    
+                    <li class="dropdown">                       
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Información Inmobiliaria
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Inmobiliarias", "Index", "Inmobiliarias")</li>
+                                <li>@Html.ActionLink("Plan de Cuentas", "Index", "PlandeCuentas")</li>
+                                <li>@Html.ActionLink("Etapas", "Index", "Etapas")</li>
+                                <li>@Html.ActionLink("Proyectos", "Index", "Proyectoes")</li>
+                                <li>@Html.ActionLink("Cuentas", "Index", "Cuentas")</li>
+                            </ul>
+                        
+                    </li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Template 2", "template2", "Home")</li>
+                    <li>@Html.ActionLink("Template 3", "template3", "Home")</li>
+</ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Sistema Inmobiliario</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/spcontext")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
